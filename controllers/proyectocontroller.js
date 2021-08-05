@@ -5,7 +5,7 @@ exports.proyecto1 = (req,res) =>{
         nombrePagina : 'Proyecto'
     });
 }
-
+//hola
 exports.formularioProyecto = (req,res) =>{
     res.render('nuevoproyecto.pug', {
         nombrePagina : 'Nuevo Proyecto'
