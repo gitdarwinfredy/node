@@ -1,3 +1,5 @@
+const Proyectos = require('../models/Proyectos');
+
 exports.proyecto1 = (req,res) =>{
     res.render('index.pug', {
         nombrePagina : 'Proyecto'
@@ -34,6 +36,10 @@ exports.formularioProyecto = (req,res) =>{
     } else {
         //no hay errores- es por que hay un errorIngreso
         //insertar en la BD.
+        Proyectos.create({nombre})
+            .then(() => console.log('Insertado correctamente'))
+            .catch(error => console.log(Error));
+
     }
 
  }
