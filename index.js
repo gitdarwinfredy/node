@@ -9,8 +9,9 @@ const db = require('./config/db');
 //importar el modelo
 require('./models/Proyectos');
 
+//conexion de BD sequelize con el servidor mysql
 db.sync()
-    .then(() => console.log('conectador al servidor'))
+    .then(() => console.log('conectados al servidor'))
     .catch(error => console.log('Error'));
 
 

@@ -1,4 +1,6 @@
 const Proyectos = require('../models/Proyectos');
+const slug = require('slug');
+
 
 exports.proyecto1 = (req,res) =>{
     res.render('index.pug', {
@@ -12,7 +14,7 @@ exports.formularioProyecto = (req,res) =>{
         
     });
 }
- exports.nuevoProyecto = (req,res) =>{
+ exports.nuevoProyecto = async (req,res) =>{
      //enviar a la consola lo que el usuario escriba
      //console.log(req.body);
 
@@ -36,9 +38,16 @@ exports.formularioProyecto = (req,res) =>{
     } else {
         //no hay errores- es por que hay un errorIngreso
         //insertar en la BD.
-        Proyectos.create({nombre})
-            .then(() => console.log('Insertado correctamente'))
-            .catch(error => console.log(Error));
+        //podemos agregarle algo extra a nuestros objetos antes de almacenarlos
+        //en este caso se repitio el nombre y lo pasa al objeto url
+        const url = slug(nombre).toLowerCase();
+        const proyecto = await Proyectos.create({nombre, url});
+        res.redirect('/');
+        
+
+
+
+        
 
     }
 
