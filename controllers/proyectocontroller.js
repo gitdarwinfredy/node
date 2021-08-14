@@ -1,5 +1,5 @@
 const Proyectos = require('../models/Proyectos');
-const slug = require('slug');
+
 
 
 exports.proyecto1 = (req,res) =>{
@@ -20,6 +20,7 @@ exports.formularioProyecto = (req,res) =>{
 
      // validamos que tengamos algo en el input
     const{nombre}= req.body;
+    const url = "";
 
     let errorIngreso = [];
 
@@ -40,7 +41,8 @@ exports.formularioProyecto = (req,res) =>{
         //insertar en la BD.
         //podemos agregarle algo extra a nuestros objetos antes de almacenarlos
         //en este caso se repitio el nombre y lo pasa al objeto url
-        const url = slug(nombre).toLowerCase();
+        
+        
         const proyecto = await Proyectos.create({nombre, url});
         res.redirect('/');
         

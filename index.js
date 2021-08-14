@@ -3,6 +3,7 @@ const routes = require('./routes');
 const path = require('path');
 const bodyParser = require('body-parser');
 
+
 // Crear la conexion a la BD
 const db = require('./config/db');
 

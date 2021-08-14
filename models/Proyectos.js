@@ -1,4 +1,6 @@
 const Sequelize = require('sequelize');
+const slug = require('slug');
+const shortid = require('shortid');
 
 const db = require('../config/db');
 
@@ -16,6 +18,16 @@ const Proyectos = db.define('proyectos', {
 
     url : Sequelize.STRING
 
+
+},{ hooks: {
+        beforeCreate(proyecto){
+        console.log('antes de insertar en la base de datos');
+        const url = slug(proyecto.nombre).toLowerCase();
+
+
+        proyecto.url = `${url}-${shortid.generate()}`
+        }
+    }
 
 });
 
