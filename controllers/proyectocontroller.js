@@ -2,9 +2,14 @@ const Proyectos = require('../models/Proyectos');
 
 
 
-exports.proyecto1 = (req,res) =>{
+exports.proyecto1 = async (req,res) =>{
+    // consulta la base de datos y la asigna a la variable proyectos
+    //controlador interactua con el modelo trae los resultados los asigna
+    //la variable y se los pasa a las vistas
+    const proyectos = await Proyectos.findAll();
     res.render('index.pug', {
-        nombrePagina : 'Proyecto'
+        nombrePagina : 'Proyecto',
+        proyectos
     });
 }
 //hola
