@@ -1,5 +1,7 @@
 extends layout
 
+include mixins/crearProyecto
+
 block contenido
     .contenido-principal 
         h1 #{nombrePagina}
@@ -8,11 +10,8 @@ block contenido
             each Vingreso in errorIngreso 
                 .alerta.error= Vingreso.texto
 
-        form.agregar-proyecto(action="/nuevo-proyecto" method="POST")
-            .campo
-                label(for="nombre") Nombre proyecto: 
-                input(type="text" id="nombre" name="nombre" 
-                placeholder="Nombre Proyecto")
+        pre=vardump(proyecto)
 
-            .campo.enviar
-                input(type="submit" value="agregar" class="boton")
+        +crearProyecto(proyecto)        
+
+        

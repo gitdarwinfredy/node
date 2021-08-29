@@ -85,7 +85,11 @@ exports.formularioProyecto = async (req,res) =>{
 
  exports.formularioEditar = async (req, res, next) => {
     const proyectos =  await Proyectos.findAll();
-    const proyecto = await Proyectos.findOne();
+    const proyecto = await Proyectos.findOne({
+        where: {
+            id: req.params.id
+        }
+    });
 
     if(!proyecto) return next();
     //render a la vista
