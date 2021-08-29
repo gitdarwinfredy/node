@@ -20,12 +20,12 @@ const Proyectos = db.define('proyectos', {
 
 
 },{ hooks: {
-        beforeCreate(proyecto){
+        beforeCreate(proyector){
         console.log('antes de insertar en la base de datos');
-        const url = slug(proyecto.nombre).toLowerCase();
+        const url = slug(proyector.nombre).toLowerCase();
 
 
-        proyecto.url = `${url}-${shortid.generate()}`
+        proyector.url = `${url}-${shortid.generate()}`
         }
     }
 

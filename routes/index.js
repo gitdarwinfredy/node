@@ -14,9 +14,11 @@ router.get('/', rutasControlador.proyecto1 );
 router.get('/nuevo-proyecto', rutasControlador.formularioProyecto );
 router.post('/nuevo-proyecto', body('nombre').not().isEmpty().trim().escape(),
 rutasControlador.nuevoProyecto); 
+router.get('/proyectos/:url', rutasControlador.proyectoPorUrl);
+router.get('/proyecto/editar/:id',rutasControlador.formularioEditar);
 return router;
-
 }
+
 
 
 

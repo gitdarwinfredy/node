@@ -6,6 +6,7 @@ exports.proyecto1 = async (req,res) =>{
     // consulta la base de datos y la asigna a la variable proyectos
     //controlador interactua con el modelo trae los resultados los asigna
     //la variable y se los pasa a las vistas
+    //en el modelo es que se crea la informacion.
     const proyectos = await Proyectos.findAll();
     res.render('index.pug', {
         nombrePagina : 'Proyecto',
@@ -13,18 +14,22 @@ exports.proyecto1 = async (req,res) =>{
     });
 }
 //hola
-exports.formularioProyecto = (req,res) =>{
+exports.formularioProyecto = async (req,res) =>{
+    const proyectos = await Proyectos.findAll();
     res.render('nuevoproyecto.pug', {
-        nombrePagina : 'Nuevo Proyecto'
+        nombrePagina : 'Nuevo Proyecto',
+        proyectos
         
     });
 }
  exports.nuevoProyecto = async (req,res) =>{
+    const proyectos = await Proyectos.findAll();
      //enviar a la consola lo que el usuario escriba
      //console.log(req.body);
 
      // validamos que tengamos algo en el input
-    const{nombre}= req.body;
+    //const{nombre}= req.body;
+    const nombre= req.body.nombre;
     const url = "";
 
     let errorIngreso = [];
@@ -37,7 +42,8 @@ exports.formularioProyecto = (req,res) =>{
     if(errorIngreso.length > 0){
         res.render('nuevoproyecto.pug',{
             nombrePagina : 'Nuevo Proyecto',
-            errorIngreso
+            errorIngreso,
+            proyectos
             //le estamos pasando los errores a la vista- 
             //en esta parte pasamos las variables
         })
@@ -51,18 +57,47 @@ exports.formularioProyecto = (req,res) =>{
         const proyecto = await Proyectos.create({nombre, url});
         res.redirect('/');
         
-
-
-
-        
-
     }
 
  }
 
+ exports.proyectoPorUrl = async (req,res, next) =>{
+     //res.send(req.params.url);
+    const proyectos = await Proyectos.findAll();
+    const proyecto = await Proyectos.findOne({
+    where: {
+        url: req.params.url
+    }
+
+  });
+
+    if(!proyecto) return next();
+
+   //render a la vista
+   res.render('tareas.pug',{
+        nombrePagina : 'Tareas del Proyecto',
+        proyecto,
+        proyectos
+
+   })
+ 
+ }
+
+ exports.formularioEditar = async (req, res, next) => {
+    const proyectos =  await Proyectos.findAll();
+    const proyecto = await Proyectos.findOne();
+
+    if(!proyecto) return next();
+    //render a la vista
+    res.render('nuevoproyecto.pug', {
+        nombrePagina : 'Editar Proyecto',
+        proyecto,
+        proyectos
+
+    })
 
 
-
+ }
 
 
 

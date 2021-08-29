@@ -15,6 +15,9 @@ db.sync()
     .then(() => console.log('conectados al servidor'))
     .catch(error => console.log('Error'));
 
+//helpers con algunas funciones
+const helpers = require("./helpers");
+
 
 //crear una app de express
 const app= express();
@@ -27,6 +30,16 @@ app.set('view Engine' , 'pug');
 
 //añadir la carpeta de vistas
 app.set('views' , path.join(__dirname, './views' ));
+
+//despues de las vistas pasar vardump a la aplicacion
+
+app.use((req, res, next) => {
+    res.locals.vardump = helpers.vardump;
+    next();
+
+});
+
+
 
 //habilitar el bodyParaser para leer los datos en el formulario
 app.use(bodyParser.urlencoded({extended: true}));

@@ -175,7 +175,7 @@ body.index {
     height: calc( 100vh - 60px);
 }
 .contenido-principal {
-    flex: 1;
+    flex: 2;
     padding: 1rem;
     overflow: scroll;
 }
@@ -187,7 +187,7 @@ body.index {
     font-size: 1.8rem;
 }
 .contenido-principal h2 {
-    font-size: 1.4rem;
+    font-size: 0.2rem;
     margin-top: 2rem;
 }
 .contenido-principal h1 span {
@@ -327,7 +327,7 @@ form input[type="submit"]{
     text-decoration: none;
 }
 .contenedor-acciones .boton.eliminar {
-    color: white;
+    color: rgb(241, 236, 236);
 }
 .contenedor-acciones .boton {
     margin: 0;
