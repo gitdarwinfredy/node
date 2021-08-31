@@ -16,6 +16,8 @@ router.post('/nuevo-proyecto', body('nombre').not().isEmpty().trim().escape(),
 rutasControlador.nuevoProyecto); 
 router.get('/proyectos/:url', rutasControlador.proyectoPorUrl);
 router.get('/proyecto/editar/:id',rutasControlador.formularioEditar);
+router.post('/nuevo-proyecto/:id', body('nombre').not().isEmpty().trim().escape(),
+rutasControlador.actualizarProyecto);
 return router;
 }
 
