@@ -8,11 +8,12 @@ block contenido
 
 
         //Lista de pendientes
-        //pre= vardump(proyecto)
+        pre= vardump(proyecto)
 
 
         // Acciones que se pueden realizar
 
         .contenedor-acciones
             a(href=`/proyecto/editar/${proyecto.id}` class ="boton" ) Editar Proyecto
+            a(href=`/proyectos/${proyecto.id}` class ="boton eliminar" ) Eliminar
             button#eliminar-proyecto(type="button" class="boton eliminar") Eliminar Proyecto 

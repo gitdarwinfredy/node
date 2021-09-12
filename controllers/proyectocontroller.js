@@ -104,6 +104,8 @@ exports.formularioProyecto = async (req,res) =>{
  }
 
 
+ 
+ 
  exports.actualizarProyecto = async (req,res) =>{
     const proyectos = await Proyectos.findAll();
      //enviar a la consola lo que el usuario escriba
@@ -153,3 +155,15 @@ exports.formularioProyecto = async (req,res) =>{
 
 
 
+    exports.eliminarProyecto = async (req, res, next) =>{
+    //res.send(req.params.url);
+    id = req.params.id;
+    const resultado = await Proyectos.destroy(
+    
+    {where : {id : id}
+        });
+
+    res.redirect('/');
+    if(!resultado) return next();
+
+}
